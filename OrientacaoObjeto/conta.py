@@ -19,10 +19,17 @@ class Conta:
         print("O valor depositado foi de R${}".format(valor))
         print("SALDO TOTAL DE R${} do titular {}".format(self.__saldo,self.__titular))
 
+    def pode_sacar(self,valor_a_sacar):
+        valor_disponivel = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_disponivel
+
     def saca(self, valor):
-        self.__saldo -= valor
-        print("O valor sacado foi de R${}".format(valor))
-        print("SALDO TOTAL DE R${} do titular {}".format(self.__saldo,self.__titular))
+        if(self.pode_sacar(valor)):
+            self.__saldo -= valor
+            print("O valor sacado foi de R${}".format(valor))
+            print("SALDO TOTAL DE R${} do titular {}".format(self.__saldo,self.__titular))
+        else:
+            print("O valor {} ultrapassou o limite de {}".format(self.__saldo,self.__limite))
 
     def transfere(self, valor, destino):
         self.saca(valor)
