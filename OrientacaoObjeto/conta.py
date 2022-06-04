@@ -24,3 +24,9 @@ class Conta:
     def transfere(self, valor, destino):
         self.saca(valor)
         destino.deposita(valor)
+
+    def numero_da_conta(self):
+        return self.__numero
+    
+    def retorna_limite(self):
+        return self.__limite
