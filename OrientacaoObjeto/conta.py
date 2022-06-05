@@ -19,12 +19,12 @@ class Conta:
         print("O valor depositado foi de R${}".format(valor))
         print("SALDO TOTAL DE R${} do titular {}".format(self.__saldo,self.__titular))
 
-    def pode_sacar(self,valor_a_sacar):
+    def __pode_sacar(self,valor_a_sacar):
         valor_disponivel = self.__saldo + self.__limite
         return valor_a_sacar <= valor_disponivel
 
     def saca(self, valor):
-        if(self.pode_sacar(valor)):
+        if(self.__pode_sacar(valor)):
             self.__saldo -= valor
             print("O valor sacado foi de R${}".format(valor))
             print("SALDO TOTAL DE R${} do titular {}".format(self.__saldo,self.__titular))
@@ -41,6 +41,10 @@ class Conta:
     @property
     def limite(self):
         return self.__limite
+
+    @staticmethod
+    def codigo_banco():
+        return {"Banco do Brasil": "001", "Caixa": "104", "Itau Unibanco":"341"}
     
     @limite.setter
     def limite(self, limite):
